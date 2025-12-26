@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baseline – Daily Check-in</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandPurple: '#6A1CF7',
+            brandPink: '#E11D48'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-brandPurple flex items-center justify-center px-4">
+
+  <div class="w-full max-w-md bg-white rounded-3xl shadow-lg p-6 space-y-6">
+
+    <!-- Header -->
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-brandPink">baseline</h1>
+      <p class="text-xs text-gray-500 mt-1">by Team Echo</p>
+      <p class="text-sm text-gray-600 mt-3">
+        Take 30 seconds to check in with yourself.
+      </p>
+    </div>
+
+    <!-- Mood -->
+    <div>
+      <p class="text-gray-700 font-medium mb-2">How are you feeling today?</p>
+      <div class="flex justify-between">
+        <button class="text-2xl p-3 rounded-full hover:bg-gray-100">😊</button>
+        <button class="text-2xl p-3 rounded-full hover:bg-gray-100">🙂</button>
+        <button class="text-2xl p-3 rounded-full hover:bg-gray-100">😐</button>
+        <button class="text-2xl p-3 rounded-full hover:bg-gray-100">😔</button>
+        <button class="text-2xl p-3 rounded-full hover:bg-gray-100">😞</button>
+      </div>
+    </div>
+
+    <!-- Energy -->
+    <div>
+      <p class="text-gray-700 font-medium mb-2">Energy level</p>
+      <div class="flex gap-2">
+        <button class="flex-1 border rounded-xl py-2 hover:bg-gray-100">Low</button>
+        <button class="flex-1 border rounded-xl py-2 hover:bg-gray-100">Medium</button>
+        <button class="flex-1 border rounded-xl py-2 hover:bg-gray-100">High</button>
+      </div>
+    </div>
+
+    <!-- Stress -->
+    <div>
+      <p class="text-gray-700 font-medium mb-2">Stress level</p>
+      <div class="flex gap-2">
+        <button class="flex-1 border rounded-xl py-2 hover:bg-gray-100">Low</button>
+        <button class="flex-1 border rounded-xl py-2 hover:bg-gray-100">Medium</button>
+        <button class="flex-1 border rounded-xl py-2 hover:bg-gray-100">High</button>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button
+      class="w-full bg-brandPink text-white py-3 rounded-2xl font-medium hover:opacity-90 transition">
+      Submit Check-in
+    </button>
+
+    <!-- Insight -->
+    <div class="bg-gray-50 rounded-2xl p-4">
+      <p class="text-xs text-gray-500 mb-1">Today’s insight</p>
+      <p class="text-gray-700 text-sm">
+        Your energy has been lower than usual lately.
+        A few quiet minutes or light movement could help reset your baseline.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
