@@ -1,398 +1,831 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <title>Baseline</title>
 
+
+
   <!-- Tailwind CSS -->
+
   <script src="https://cdn.tailwindcss.com"></script>
 
+
+
   <script>
+
     tailwind.config = {
+
       theme: {
+
         extend: {
+
           colors: {
+
             brandPurple: '#6A1CF7',
+
             brandPink: '#E11D48'
+
           }
+
         }
+
       }
+
     }
+
   </script>
+
 </head>
+
+
 
 <body class="min-h-screen bg-brandPurple overflow-x-hidden">
 
 
-  <!-- ================= LOGIN VIEW ================= -->
-  <div id="loginView" class="min-h-screen flex items-center justify-center px-4">
-    <div class="w-full max-w-sm bg-white rounded-3xl shadow-lg p-6 space-y-6">
 
-      <!-- Logo -->
-      <div class="text-center space-y-3">
-  <img
-    src="assets/baseline BG.png"
-    alt="Baseline logo"
-    class="mx-auto h-20"
-  />
-  <p class="text-[11px] text-gray-400">by Team Echo</p>
-  <p class="text-sm text-gray-600">
-    A 30-second daily check-in for self-awareness.
-  </p>
+
+
+  <!-- ================= LOGIN VIEW ================= -->
+
+<div id="loginView" class="min-h-screen flex items-center justify-center px-4">
+  <div class="w-full max-w-sm bg-white rounded-3xl shadow-lg p-6 space-y-6">
+    <div class="text-center space-y-3">
+      <img src="assets/baseline BG.png" alt="Baseline logo" class="mx-auto h-20" />
+      <p class="text-xs text-gray-400">
+
+        By Team Echo
+
+      </p>
+      <p class="text-xs text-gray-400">
+
+        Baseline supports self-awareness. It is not a diagnostic or therapeutic tool.
+
+      </p>
+      <p class="text-sm text-gray-600">Enter your name to start your baseline.</p>
+    </div>
+
+    <input 
+      type="text" 
+      id="usernameInput" 
+      placeholder="Your Name" 
+      class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-brandPurple outline-none"
+    />
+
+    <button
+      onclick="login()"
+      class="w-full bg-brandPink text-white py-3 rounded-2xl font-medium hover:opacity-90 transition">
+      Continue
+    </button>
+  </div>
 </div>
 
+<!-- 
 
-      <!-- Login Button -->
+
+
+
+
       <button
+
         onclick="login()"
+
         class="w-full bg-brandPink text-white py-3 rounded-2xl font-medium hover:opacity-90 transition">
+
         Continue
+
       </button>
 
+
+
       <p class="text-xs text-gray-400">
+
         Baseline supports self-awareness. It is not a diagnostic or therapeutic tool.
+
       </p>
+
     </div>
-  </div>
+
+  </div> -->
+
+
 
   <!-- ================= APP VIEW ================= -->
+
   <div id="appView" class="hidden min-h-screen bg-gray-100">
 
+
+
     <!-- NAVBAR -->
+
     <nav class="bg-white shadow-sm px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-  
+
+ 
+
   <img src="assets/baseline BG.png" class="h-10 mx-auto sm:mx-0" />
 
+
+
   <div class="flex flex-wrap justify-center sm:justify-end gap-3 text-sm text-gray-600">
+
     <button onclick="showView('checkin')">Check-in</button>
+
     <button onclick="showView('moodData')">Mood Data</button>
+
     <button onclick="showView('improveMood')">Improve Mood</button>
+
     <button onclick="showView('miniResets')">Mini Resets</button>
+
     <button onclick="logout()" class="text-red-500">Logout</button>
+
   </div>
+
+
 
 </nav>
 
 
 
+
+
+
+
     <!-- MAIN CONTENT -->
+
     <main class="flex justify-center px-4 py-6 sm:py-10">
 
+
+
   <!-- ================= CHECK-IN VIEW ================= -->
+
   <section id="checkinView" class="w-full max-w-md min-h-[80vh]">
+
+
 
     <div class="bg-white rounded-3xl shadow p-6 space-y-6">
 
+
+
       <h2 class="text-lg font-semibold text-gray-800 text-center">
+
         Today’s Check-in
+
       </h2>
 
+
+
       <!-- Mood -->
+
       <div>
+
         <p class="font-medium text-gray-700 mb-2">
+
           How are you feeling today?
+
         </p>
+
         <div class="flex flex-wrap justify-center gap-2 sm:justify-between">
 
+
+
           <button class="mood-btn text-2xl p-3 rounded-full hover:bg-gray-100">😊</button>
+
           <button class="mood-btn text-2xl p-3 rounded-full hover:bg-gray-100">🙂</button>
+
           <button class="mood-btn text-2xl p-3 rounded-full hover:bg-gray-100">😐</button>
+
           <button class="mood-btn text-2xl p-3 rounded-full hover:bg-gray-100">😔</button>
+
           <button class="mood-btn text-2xl p-3 rounded-full hover:bg-gray-100">😞</button>
+
         </div>
+
       </div>
+
+
 
       <!-- Energy -->
+
       <div>
+
         <p class="font-medium text-gray-700 mb-2">Energy level</p>
+
         <div class="flex gap-2">
+
           <button class="energy-btn flex-1 border rounded-xl py-2 hover:bg-gray-100">Low</button>
+
           <button class="energy-btn flex-1 border rounded-xl py-2 hover:bg-gray-100">Medium</button>
+
           <button class="energy-btn flex-1 border rounded-xl py-2 hover:bg-gray-100">High</button>
+
         </div>
+
       </div>
+
+
 
       <!-- Stress -->
+
       <div>
+
         <p class="font-medium text-gray-700 mb-2">Stress level</p>
+
         <div class="flex gap-2">
+
           <button class="stress-btn flex-1 border rounded-xl py-2 hover:bg-gray-100">Low</button>
+
           <button class="stress-btn flex-1 border rounded-xl py-2 hover:bg-gray-100">Medium</button>
+
           <button class="stress-btn flex-1 border rounded-xl py-2 hover:bg-gray-100">High</button>
+
         </div>
+
       </div>
+
+
 
       <!-- Submit -->
+
+
+
+<div class="mt-4">
+
+  <label class="block text-sm font-medium text-gray-700">Daily Reflection (Optional)</label>
+
+  <textarea id="journalEntry" rows="3"
+
+    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+
+    placeholder="What's on your mind?"></textarea>
+
+</div>
+
+
+
       <button
+
         id="submitBtn"
+
         class="w-full bg-brandPink text-white py-3 rounded-2xl font-medium hover:opacity-90 transition">
+
         Submit Check-in
+
       </button>
 
+
+
       <!-- Success message -->
+
       <div
+
         id="successMessage"
+
         class="hidden bg-green-50 border border-green-200 text-green-700 rounded-2xl p-4 text-sm text-center">
+
         ✅ Check-in saved. Thanks for checking in with yourself.
+
       </div>
+
+
 
       <!-- Insight -->
+
       <div class="bg-gray-50 rounded-2xl p-4">
+
         <p class="text-xs text-gray-500 mb-1">Today’s insight</p>
+
         <p id="todayInsight" class="text-gray-700 text-sm">
+
           You’ve had slightly lower energy recently.
+
           A short break or light movement could help reset your baseline.
+
         </p>
+
       </div>
 
+
+
     </div>
+
   </section>
 
+
+
   <!-- ================= MOOD DATA VIEW ================= -->
+
   <section id="moodDataView" class="hidden w-full max-w-2xl">
+
   <div class="bg-white rounded-3xl shadow p-6 space-y-4">
+
     <h2 class="text-lg font-semibold text-center">Your Week at a Glance</h2>
+
     <canvas id="moodChart" width="400" height="200"></canvas>
+
     <div id="moodDataContent" class="text-sm text-gray-600"></div>
+
+  </div>
+
+</section>
+
+
+
+  <!-- ================= IMPROVE MOOD VIEW ================= -->
+
+  <section id="improveMoodView" class="hidden w-full max-w-md" class="w-full max-w-md min-h-[80vh]">
+
+    <div class="bg-white rounded-3xl shadow p-6 space-y-3">
+
+      <h2 class="text-lg font-semibold">Improve Mood</h2>
+
+      <ul id="improveMoodList" class="list-disc list-inside text-sm text-gray-600 space-y-3">
+  <li>Complete a check-in to see personalized tips.</li>
+</ul>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================= MINI RESETS VIEW ================= -->
+
+  <section id="miniResetsView" class="hidden w-full max-w-md">
+  <div class="bg-white rounded-3xl shadow p-6 text-center space-y-6">
+    <h2 class="text-lg font-semibold">Mini Resets</h2>
+    
+    <div id="timerDisplay" class="w-32 h-32 rounded-full border-8 border-brandPurple flex items-center justify-center mx-auto text-3xl font-bold text-brandPurple transition-all duration-1000">
+      30
+    </div>
+
+    <p id="timerMessage" class="text-sm text-gray-600">
+      Click to start a 30-second box breathing reset.
+    </p>
+
+    <button id="startTimerBtn" onclick="startResetTimer()" class="w-full bg-brandPink text-white px-4 py-3 rounded-xl font-medium">
+      Start Reset
+    </button>
   </div>
 </section>
 
-  <!-- ================= IMPROVE MOOD VIEW ================= -->
-  <section id="improveMoodView" class="hidden w-full max-w-md" class="w-full max-w-md min-h-[80vh]">
-    <div class="bg-white rounded-3xl shadow p-6 space-y-3">
-      <h2 class="text-lg font-semibold">Improve Mood</h2>
-      <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-        <li>Step outside for a few minutes</li>
-        <li>Drink some water</li>
-        <li>Slow breathing for 30 seconds</li>
-      </ul>
-    </div>
-  </section>
 
-  <!-- ================= MINI RESETS VIEW ================= -->
-  <section id="miniResetsView" class="hidden w-full max-w-md" class="w-full max-w-md min-h-[80vh]">
-    <div class="bg-white rounded-3xl shadow p-6 text-center space-y-3">
-      <h2 class="text-lg font-semibold">Mini Resets</h2>
-      <p class="text-sm text-gray-600">
-        Small actions to reset focus.
-      </p>
-      <button class="bg-brandPink text-white px-4 py-2 rounded-xl">
-        Take a 30-second pause
-      </button>
-    </div>
-  </section>
 
 </main>
 
+
+
   </div>
 
-  <!-- ================= BASIC JS ================= -->
-  <script>
-    function login() {
-      document.getElementById('loginView').classList.add('hidden');
-      document.getElementById('appView').classList.remove('hidden');
-    }
 
-    function logout() {
-      document.getElementById('appView').classList.add('hidden');
-      document.getElementById('loginView').classList.remove('hidden');
-    }
 
-  </script>
+ <section id="resourcesView" class="hidden w-full max-w-md mx-auto p-4">
+  <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-red-100">
+    <div class="bg-red-50 p-8 text-center">
+      <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-red-600">You're Not Alone</h2>
+      <p id="sosMessage" class="text-gray-600 mt-2 text-sm leading-relaxed">
+        We've noticed things have been tough lately. Please reach out for support.
+      </p>
+    </div>
+
+    <div class="p-6 space-y-4">
+      <div class="flex items-center p-4 bg-blue-50 rounded-2xl border-l-4 border-blue-500">
+        <div class="flex-1">
+          <h3 class="font-bold text-blue-900">988 Suicide & Crisis Lifeline</h3>
+          <p class="text-xs text-blue-700">Call or Text: <span class="font-bold">988</span></p>
+          <p class="text-[10px] text-blue-600 uppercase tracking-wider mt-1">Available 24/7</p>
+        </div>
+        <a href="tel:988" class="bg-blue-500 text-white p-2 rounded-full shadow-md">
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+           </svg>
+        </a>
+      </div>
+
+      <div class="flex items-center p-4 bg-purple-50 rounded-2xl border-l-4 border-purple-500">
+        <div class="flex-1">
+          <h3 class="font-bold text-purple-900">National Crisis Text Line</h3>
+          <p class="text-xs text-purple-700 font-medium">Text <span class="bg-purple-200 px-1 rounded">HOME</span> to <span class="font-bold">741741</span></p>
+        </div>
+        <a href="sms:741741" class="bg-purple-500 text-white p-2 rounded-full shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="p-6 pt-0">
+      <button onclick="location.reload()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 py-3 rounded-2xl font-medium transition">
+        Back to Check-in
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<script src="config.js"></script>
+
+
 
 <script>
-  // Store selected values
-  let checkInHistory = [];
-  let selectedMood = null;
-  let selectedEnergy = null;
-  let selectedStress = null;
 
-  // Utility function to handle selection
-  function handleSelection(buttons, selectedClass, callback) {
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active style from all
-        buttons.forEach(b => b.classList.remove('bg-gray-200'));
+  
+/* =====================
+   GLOBAL STATE
+===================== */
+let checkInHistory = [];
+let selectedMood = null;
+let selectedEnergy = null;
+let selectedStress = null;
 
-        // Add active style to clicked button
-        btn.classList.add('bg-gray-200');
+/* =====================
+   NAVIGATION
+===================== */
+let currentUser = null; // Add this global variable
+function login() {
+    const nameInput = document.getElementById('usernameInput');
+    const name = nameInput.value.trim();
 
-        // Save value
-        callback(btn.innerText);
-      });
+    if (!name) {
+        alert("Please enter a name to continue.");
+        return;
+    }
+
+    currentUser = name;
+    // Save current session
+    localStorage.setItem('currentUser', currentUser); 
+    
+    // Load the data for this specific user
+    loadUserData();
+    
+    // Switch Views: Hide Login, Show App
+    document.getElementById('loginView').classList.add('hidden');
+    document.getElementById('appView').classList.remove('hidden');
+    
+    // Default to the check-in view
+    showView('checkin');
+}
+
+function saveCheckIn(entry) {
+    // OLD: const key = 'baselineData';
+    // NEW: Unique key for every user
+    const key = `baselineData_${currentUser}`; 
+    
+    let history = JSON.parse(localStorage.getItem(key)) || [];
+    history.push(entry);
+    localStorage.setItem(key, JSON.stringify(history));
+}
+
+function loadUserData() {
+    const key = `baselineData_${currentUser}`;
+    const saved = localStorage.getItem(key);
+    checkInHistory = saved ? JSON.parse(saved) : [];
+    
+    // Refresh the UI with this user's data
+    renderChart();
+}
+
+function logout() {
+    localStorage.removeItem('currentUser'); // Only forget WHO is logged in
+    currentUser = null;
+    checkInHistory = [];
+    location.reload(); // Returns to the login screen
+}
+
+function showView(viewName) {
+    // List of all section IDs
+    const views = ['checkin', 'moodData', 'improveMood', 'miniResets'];
+    
+    views.forEach(v => {
+        const el = document.getElementById(v + 'View');
+        if (el) el.classList.add('hidden');
     });
-  }
 
-  // Mood selection
-  const moodButtons = document.querySelectorAll('.mood-btn');
-  handleSelection(moodButtons, 'mood', value => {
-    selectedMood = value;
+    const active = document.getElementById(viewName + 'View');
+    if (active) active.classList.remove('hidden');
+
+    if (viewName === 'moodData') {
+        renderChart();
+    }
+}
+/* =====================
+   BUTTON SELECTION LOGIC
+===================== */
+function setupButtons(selector, callback) {
+  const buttons = document.querySelectorAll(selector);
+  buttons.forEach(btn => {
+    btn.onclick = () => {
+      buttons.forEach(b =>
+        b.classList.remove('bg-gray-200', 'ring-2', 'ring-brandPurple')
+      );
+      btn.classList.add('bg-gray-200', 'ring-2', 'ring-brandPurple');
+      callback(btn.innerText);
+    };
   });
+}
 
-  // Energy selection
-  const energyButtons = document.querySelectorAll('.energy-btn');
-  handleSelection(energyButtons, 'energy', value => {
-    selectedEnergy = value;
-  });
+setupButtons('.mood-btn', v => selectedMood = v);
+setupButtons('.energy-btn', v => selectedEnergy = v);
+setupButtons('.stress-btn', v => selectedStress = v);
 
-  // Stress selection
-  const stressButtons = document.querySelectorAll('.stress-btn');
-  handleSelection(stressButtons, 'stress', value => {
-    selectedStress = value;
-  });
+/* =====================
+   GEMINI AI LOGIC (Optimized for 2025)
+===================== */
+async function askGemini() {
+    const box = document.getElementById('todayInsight');
+    const journalText = document.getElementById('journalEntry').value.trim() || 
+      `The user is feeling ${selectedMood} with ${selectedEnergy} energy.`;
+    box.innerText = "Consulting the baseline...";
 
-  // Submit handler
-  document.getElementById('submitBtn').addEventListener('click', () => {
+    // Updated URL to ensure the most compatible 2025 endpoint
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${CONFIG.GEMINI_API_KEY}`;
+
+    const requestBody = {
+        contents: [{
+            parts: [{
+// Inside askGemini() prompt text:
+text: `User Stats: Mood ${selectedMood}, Energy ${selectedEnergy}, Stress ${selectedStress}. 
+       Note: "${journalText}". 
+       TASK: Give 2 sentences of wellness advice. 
+       CRITICAL: If the user note suggests self-harm or a severe mental health crisis, 
+       start your response with the exact word "SOS:".`            }]
+        }],
+        generationConfig: {
+            temperature: 0.2, 
+            maxOutputTokens: 1000
+        }
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestBody)
+        });
+
+        const data = await response.json();
+
+        // Log this to your console so you can see the real error if it fails again
+        console.log("Gemini API Data:", data);
+
+        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts) {
+            const aiText = data.candidates[0].content.parts[0].text.trim();
+            if (aiText.toUpperCase().startsWith("SOS:")) {
+            triggerSOS('ai_detection');
+            return; // Stop here so it doesn't try to update the text box
+            }
+            // This is the winner! Update the box.
+            box.innerText = aiText;
+        } else if (data.error) {
+            // This will show you the ACTUAL error from Google (like "API Key Invalid")
+            box.innerText = "API Error: " + data.error.message;
+        } else {
+            box.innerText = "The AI is resetting. Try typing a specific note in the reflection box!";
+        }
+    } catch (error) {
+        console.error("AI Error:", error);
+        box.innerText = "Connection lost. Please check your internet.";
+    }
+}
+
+function triggerSOS(reason) {
+    console.log("SOS Triggered:", reason);
+    
+    // Hide the main app view
+    document.getElementById('appView').classList.add('hidden');
+    
+    // Show the SOS view
+    const resourcesView = document.getElementById('resourcesView');
+    resourcesView.classList.remove('hidden');
+    
+    // Update the message text inside the SOS view
+    const msgElement = document.getElementById('sosMessage');
+    if (reason === 'pattern') {
+        msgElement.innerText = "We've noticed a pattern of high stress and low mood over your last few check-ins. We're here for you.";
+    } else {
+        msgElement.innerText = "Based on your current reflection, we want to make sure you have immediate support and resources.";
+    }
+}
+
+// Gemini Logic for Improve Mood Button
+
+async function getPersonalizedTips() {
+    const listContainer = document.getElementById('improveMoodList');
+    listContainer.innerHTML = "<li class='text-brandPurple animate-pulse'>Tailoring suggestions...</li>";
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${CONFIG.GEMINI_API_KEY}`;
+
+    const requestBody = {
+        contents: [{
+            parts: [{
+                text: `The user is feeling: Mood ${selectedMood}, Energy ${selectedEnergy}, Stress ${selectedStress}. 
+                       Provide 3 very short, actionable "Improve Mood" tips (max 10 words each). 
+                       Format them as a simple list. Do not use generic cliches.`
+            }]
+        }],
+        generationConfig: {
+            temperature: 0.8,
+            maxOutputTokens: 500 // Using a safe limit for stability
+        }
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestBody)
+        });
+
+        const data = await response.json();
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            const text = data.candidates[0].content.parts[0].text;
+            // Split by lines or numbers to create clean list items
+            const tips = text.split(/\d\.\s|•|\n/).filter(t => t.trim().length > 5);
+            
+            listContainer.innerHTML = ""; // Clear loader
+            tips.slice(0, 3).forEach(tip => {
+                const li = document.createElement('li');
+                li.className = "p-2 bg-gray-50 rounded-lg border-l-4 border-brandPink";
+                li.innerText = tip.trim();
+                listContainer.appendChild(li);
+            });
+        }
+    } catch (error) {
+        listContainer.innerHTML = "<li>Take 3 deep breaths.</li><li>Step outside for fresh air.</li><li>Stretch your shoulders.</li>";
+    }
+}
+
+
+
+
+/* =====================
+   SUBMIT CHECK-IN
+===================== */
+document.getElementById('submitBtn').onclick = () => {
   if (!selectedMood || !selectedEnergy || !selectedStress) {
-    alert('Please complete all check-in fields.');
+    alert("Please complete all check-in fields.");
     return;
   }
 
-  const checkInData = {
-  mood: selectedMood,
-  energy: selectedEnergy,
-  stress: selectedStress,
-  timestamp: new Date().toISOString()
+  const entry = {
+    mood: selectedMood,
+    energy: selectedEnergy,
+    stress: selectedStress,
+    timestamp: new Date().toISOString()
+  };
+
+  // NEW: Save to the user-specific history
+  saveCheckIn(entry); 
+  
+  // Sync the local global variable so the chart updates instantly
+  checkInHistory.unshift(entry);
+
+  document.getElementById('successMessage').classList.remove('hidden');
+  setTimeout(() => document.getElementById('successMessage').classList.add('hidden'), 3000);
+
+  checkPattern(); // Check if the last 3 days were rough
+  askGemini();
+  getPersonalizedTips();
+  document.getElementById('journalEntry').value = "";
+
+
+  function checkPattern() {
+    if (checkInHistory.length < 3) return;
+
+    // Check last 3 entries for "😞" or "😔" AND "High" stress
+    const crisisCount = checkInHistory.slice(0, 3).filter(entry => 
+        (entry.mood === '😞' || entry.mood === '😔') && entry.stress === 'High'
+    ).length;
+
+    if (crisisCount >= 3) {
+        triggerSOS('pattern');
+    }
+}
 };
 
+/* =====================
+   CHART LOGIC
+===================== */
+let moodChart = null;
 
-// Add newest check-in to the beginning
-checkInHistory.unshift(checkInData);
+function renderChart() {
+  const canvas = document.getElementById('moodChart');
+  if (!canvas) return;
 
-// Keep only last 7 entries
-if (checkInHistory.length > 7) {
-  checkInHistory.pop();
-}
-
-console.log('Check-in history:', checkInHistory);
-
-const pattern = detectPattern(checkInHistory);
-const insightText = getStaticInsight(pattern);
-
-document.querySelector('#todayInsight').innerText = insightText;
-
-
-
-  // Show success message
-  const successMessage = document.getElementById('successMessage');
-  successMessage.classList.remove('hidden');
-
-  // Optional: hide after 3 seconds
-  setTimeout(() => {
-    successMessage.classList.add('hidden');
-  }, 3000);
-});
-
-</script>
-
-<script>
-  function showView(view) {
-  const views = ['checkin', 'moodData', 'improveMood', 'miniResets'];
-
-  views.forEach(v => {
-    document.getElementById(v + 'View').classList.add('hidden');
-  });
-
-  document.getElementById(view + 'View').classList.remove('hidden');
-
-  // If Mood Data is opened, render data
-  if (view === 'moodData') {
-    renderMoodData();
-  }
-}
-
-
-let myChart = null; // Global variable to track the chart instance
-
-function renderMoodData() {
-  const container = document.getElementById('moodDataContent');
+  const ctx = canvas.getContext('2d');
+  
+  // If history is empty, destroy the old chart and clear the canvas
   if (checkInHistory.length === 0) {
-    container.innerText = 'No check-ins yet.';
+    if (moodChart) {
+      moodChart.destroy();
+      moodChart = null;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById('moodDataContent').innerText = "No data available. Start checking in!";
     return;
   }
 
-  // Helper to convert data to numbers
+  if (moodChart) moodChart.destroy();
+  
+  // ... rest of your existing chart code ...
+
   const moodMap = { '😊': 5, '🙂': 4, '😐': 3, '😔': 2, '😞': 1 };
-  const energyMap = { 'High': 5, 'Medium': 3, 'Low': 1 };
-  const stressMap = { 'Low': 5, 'Medium': 3, 'High': 1 }; // Inverted: Low stress is "better"
 
-  // Process data for the chart (showing newest on the right)
-  const chartLabels = [...checkInHistory].reverse().map(e => 
-    new Date(e.timestamp).toLocaleDateString([], { weekday: 'short' })
-  );
-
-  const compositeScores = [...checkInHistory].reverse().map(e => {
-    const m = moodMap[e.mood] || 3;
-    const en = energyMap[e.energy] || 3;
-    const s = stressMap[e.stress] || 3;
-    return (m + en + s) / 3; // The average "Baseline Score"
-  });
-
-  const ctx = document.getElementById('moodChart').getContext('2d');
-  if (myChart) { myChart.destroy(); }
-
-  myChart = new Chart(ctx, {
+  moodChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: chartLabels,
+      labels: checkInHistory.map((_, i) => i + 1).reverse(),
       datasets: [{
-        label: 'Overall Wellness Baseline',
-        data: compositeScores,
-        borderColor: '#6A1CF7', // Brand Purple
-        backgroundColor: 'rgba(106, 28, 247, 0.1)',
+        label: 'Mood Level',
+        data: checkInHistory.map(e => moodMap[e.mood] || 3).reverse(),
+        borderColor: '#6A1CF7', // Your brandPurple
+        backgroundColor: 'rgba(106, 28, 247, 0.1)', // Light purple fill
         fill: true,
-        tension: 0.4,
-        pointRadius: 5,
-        pointBackgroundColor: '#E11D48' // Brand Pink points
+        tension: 0.3
       }]
     },
     options: {
-      responsive: true,
       scales: {
-        y: {
-          min: 1,
-          max: 5,
-          ticks: {
-            callback: (val) => ['Low', 'Below Avg', 'Neutral', 'Good', 'Peak'][val - 1]
-          }
-        }
-      },
-      plugins: {
-        legend: { display: false }
+        y: { min: 1, max: 5 }
       }
     }
   });
 }
 
-function getStaticInsight(pattern) {
-  switch (pattern) {
-    case 'LOW_ENERGY_TREND':
-      return 'Your energy has been lower for a few days. A short break or light movement might help reset your baseline.';
-    case 'HIGH_STRESS_PATTERN':
-      return 'Stress levels have been consistently high. Taking a moment to pause or breathe slowly could help.';
-    case 'LOW_MOOD_STREAK':
-      return 'You’ve been checking in with lower mood recently. Small acts of care can make a difference.';
-    default:
-      return 'Thanks for checking in today.';
-  }
+
+// Mini Resets
+
+function startResetTimer() {
+  const display = document.getElementById('timerDisplay');
+  const message = document.getElementById('timerMessage');
+  const btn = document.getElementById('startTimerBtn');
+  let timeLeft = 30;
+
+  btn.disabled = true;
+  btn.classList.add('opacity-50');
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    display.innerText = timeLeft;
+
+    // Pulse effect: Expand on inhale, contract on exhale
+    if (timeLeft % 8 >= 4) {
+      display.style.transform = "scale(1.1)";
+      message.innerText = "Breathe In...";
+    } else {
+      display.style.transform = "scale(0.9)";
+      message.innerText = "Breathe Out...";
+    }
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      display.innerText = "30";
+      display.style.transform = "scale(1)";
+      message.innerText = "Great job. You've reset your baseline.";
+      btn.disabled = false;
+      btn.classList.remove('opacity-50');
+    }
+  }, 1000);
 }
 
 
-// Run this on page load
+
+/* =====================
+   LOAD SAVED DATA
+===================== */
 window.onload = () => {
-  const saved = localStorage.getItem('baselineData');
-  if (saved) {
-    checkInHistory = JSON.parse(saved);
-  }
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+        currentUser = savedUser;
+        loadUserData();
+        // Skip login screen
+        document.getElementById('loginView').classList.add('hidden');
+        document.getElementById('appView').classList.remove('hidden');
+        showView('checkin');
+    }
 };
 
-// Add this line inside your "submitBtn" click handler, after checkInHistory.unshift()
-localStorage.setItem('baselineData', JSON.stringify(checkInHistory));
 
 </script>
 
 
+
 </body>
+
 </html>
