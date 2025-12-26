@@ -1,14 +1,10 @@
-/* =====================
-   GLOBAL STATE
-===================== */
+// GLOBAL STATE
 let checkInHistory = [];
 let selectedMood = null;
 let selectedEnergy = null;
 let selectedStress = null;
 
-/* =====================
-   NAVIGATION
-===================== */
+// NAVIGATION
 let currentUser = null; // Add this global variable
 function login() {
     const nameInput = document.getElementById('usernameInput');
@@ -76,9 +72,8 @@ function showView(viewName) {
         renderChart();
     }
 }
-/* =====================
-   BUTTON SELECTION LOGIC
-===================== */
+//    BUTTON SELECTION LOGIC
+
 function setupButtons(selector, callback) {
   const buttons = document.querySelectorAll(selector);
   buttons.forEach(btn => {
@@ -96,9 +91,8 @@ setupButtons('.mood-btn', v => selectedMood = v);
 setupButtons('.energy-btn', v => selectedEnergy = v);
 setupButtons('.stress-btn', v => selectedStress = v);
 
-/* =====================
-   GEMINI AI LOGIC (Optimized for 2025)
-===================== */
+
+//    GEMINI AI LOGIC
 async function askGemini() {
     const box = document.getElementById('todayInsight');
     const journalText = document.getElementById('journalEntry').value.trim() || 
@@ -226,9 +220,8 @@ async function getPersonalizedTips() {
 
 
 
-/* =====================
-   SUBMIT CHECK-IN
-===================== */
+
+//    SUBMIT CHECK-IN
 document.getElementById('submitBtn').onclick = () => {
   if (!selectedMood || !selectedEnergy || !selectedStress) {
     alert("Please complete all check-in fields.");
@@ -271,9 +264,9 @@ document.getElementById('submitBtn').onclick = () => {
 }
 };
 
-/* =====================
-   CHART LOGIC
-===================== */
+
+//    CHART LOGIC
+
 let moodChart = null;
 
 function renderChart() {
@@ -358,9 +351,8 @@ function startResetTimer() {
 
 
 
-/* =====================
-   LOAD SAVED DATA
-===================== */
+//    LOAD SAVED DATA
+
 window.onload = () => {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
